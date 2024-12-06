@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Goldsboro Law</title>
+<meta name="description" content="Professional legal services with trust, integrity, and unwavering commitment to clients.">
+<link rel="preconnect" href="https://fonts.gstatic.com" />
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    html, body {
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+        scroll-behavior: smooth;
+    }
+
+    body {
+        font-family: "Inter", Arial, sans-serif;
+        background: #000;
+        color: #fff;
+        line-height: 1.6;
+    }
+
+    /* Skip to content link */
+    .skip-to-content {
+        position: absolute;
+        top: -40px;
+        left: 10px;
+        background: #c3a05f;
+        color: #000;
+        padding: 8px;
+        text-decoration: none;
+        z-index: 10000;
+    }
+
+    .skip-to-content:focus {
+        top: 10px;
+    }
+
+    a, button, input, textarea {
+        transition: all 0.3s;
+    }
+
+    a:focus, button:focus, input:focus, textarea:focus {
+        outline: 2px dashed #c3a05f; 
+        outline-offset: 2px;
+    }
+
+    .container {
+        width: 90%;
+        max-width: 1100px;
+        margin: 0 auto;
+    }
+
+    /* Fixed header at top */
+    header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background: #000;
+        z-index: 999;
+        padding: 10px 0;
+    }
+
+    nav[role="navigation"] {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .logo {
+        font-weight: bold;
+        font-size: 1.2em;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+
+    .nav-links {
+        display: flex;
+        gap: 20px;
+        list-style: none;
+    }
+
+    .nav-links li a {
+        text-decoration: none;
+        color: #fff;
+        font-size: 0.9em;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        position: relative;
+    }
+
+    .nav-links li a:hover {
+        color: #ccc;
+    }
+
+    /* Active link styling */
+    .nav-links li a.active {
+        color: #c3a05f;
+    }
+
+    .hamburger {
+        display: none;
+        flex-direction: column;
+        cursor: pointer;
+        position: relative;
+        z-index: 1000;
+    }
+
+    .hamburger span {
+        background: #fff;
+        height: 2px;
+        width: 20px;
+        margin-bottom: 4px;
+        transition: transform 0.3s, opacity 0.3s;
+    }
+
+    .hamburger.active span:nth-child(1) {
+        transform: rotate(45deg) translate(4px, 5px);
+    }
+
+    .hamburger.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(3px, -3px);
+    }
+
+    section {
+        padding: 60px 0;
+        border-bottom: 1px solid #333;
+    }
+
+    section:last-of-type {
+        border-bottom: none;
+    }
+
+    /* Slightly increasing line height for better readability */
+    p {
+        max-width: 600px;
+        font-size: 1em;
+        margin-bottom: 20px;
+        color: #ccc;
+        line-height: 1.7; 
+    }
+
+    #hero {
+        padding-top: 100px; /* space for fixed header */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    h1, h2, h3 {
+        margin: 0 0 20px;
+        font-weight: normal;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+
+    h1 {
+        font-size: 2em;
+    }
+
+    h2 {
+        font-size: 1.5em;
+        border-bottom: 1px solid #c3a05f;
+        display: inline-block;
+        padding-bottom: 5px;
+    }
+
+    .cta-btn {
+        display: inline-block;
+        margin-top: 40px;
+        padding: 10px 20px;
+        border: 1px solid #fff;
+        text-decoration: none;
+        color: #fff;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        font-size: 0.9em;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* smoother easing */
+    }
+
+    .cta-btn:hover {
+        background: #fff;
+        color: #000;
+    }
+
+    .grid {
+        display: grid;
+        gap: 20px;
+    }
+
+    .practice-area h3 {
+        margin-bottom: 10px;
+        font-size: 1.2em;
+        color: #fff;
+    }
+
+    .team-member {
+        border-top: 1px solid #333;
+        padding-top: 20px;
+    }
+
+    .team-member h3 {
+        font-size: 1.1em;
+        margin-bottom: 10px;
+        color: #fff;
+    }
+
+    form {
+        max-width: 500px;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 5px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-size: 0.8em;
+        color: #fff;
+    }
+
+    input, textarea {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        background: #000;
+        border: 1px solid #fff;
+        color: #fff;
+        font-size: 1em;
+        outline: none;
+    }
+
+    input::placeholder, textarea::placeholder {
+        color: #555;
+    }
+
+    .field-note {
+        display: block;
+        color: #ccc;
+        margin-bottom: 20px;
+        font-size: 0.85em;
+    }
+
+    .submit-btn {
+        cursor: pointer;
+        background: none;
+        border: 1px solid #fff;
+        color: #fff;
+        padding: 10px 20px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .submit-btn:hover {
+        background: #fff;
+        color: #000;
+    }
+
+    footer {
+        text-align: center;
+        padding: 20px 0;
+        font-size: 0.8em;
+        color: #ccc;
+    }
+
+    [data-fade] {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    [data-fade].visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* Back-to-top button */
+    .back-to-top {
+        position: fixed;
+        bottom: 40px;
+        right: 40px;
+        background: #fff;
+        color: #000;
+        padding: 10px;
+        border: none;
+        cursor: pointer;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        display: none;
+        font-size: 0.8em;
+    }
+
+    .back-to-top:hover {
+        background: #ccc;
+    }
+
+    .back-to-top.show {
+        display: block;
+    }
+
+    @media (max-width: 768px) {
+        body {
+            font-size: 0.95em;
+        }
+
+        nav ul.nav-links {
+            position: absolute;
+            top: 60px;
+            right: 20px;
+            background: #000;
+            flex-direction: column;
+            gap: 10px;
+            padding: 20px;
+            border: 1px solid #333;
+            display: none;
+            width: calc(100% - 40px);
+            max-width: 250px;
+        }
+
+        nav ul.nav-links.show {
+            display: flex;
+        }
+
+        .hamburger {
+            display: flex;
+        }
+
+        section {
+            padding: 50px 0;
+        }
+
+        #hero {
+            padding-top: 100px;
+        }
+
+        h1 {
+            font-size: 1.8em;
+        }
+
+        h2 {
+            font-size: 1.3em;
+        }
+
+        .cta-btn {
+            font-size: 0.8em;
+            padding: 8px 16px;
+        }
+
+        .grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+</head>
+<body>
+    <a href="#main-content" class="skip-to-content">Skip to main content</a>
+
+    <header>
+        <div class="container">
+            <nav role="navigation" aria-label="Main navigation">
+                <div class="logo">Goldsboro Law</div>
+                <div class="hamburger" id="hamburger" aria-label="Toggle menu" aria-controls="nav-links" aria-expanded="false" role="button" tabindex="0">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="#about" data-link="about">About</a></li>
+                    <li><a href="#practice-areas" data-link="practice-areas">Practice Areas</a></li>
+                    <li><a href="#team" data-link="team">Our Team</a></li>
+                    <li><a href="#contact" data-link="contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main content landmark -->
+    <main id="main-content" role="main">
+        <section id="hero" data-fade>
+            <div class="container">
+                <h1>Goldsboro Law</h1>
+                <p>Dedicated. Experienced. Results-Focused.</p>
+                <a href="#contact" class="cta-btn">Schedule a Consultation</a>
+            </div>
+        </section>
+
+        <section id="about" data-fade>
+            <div class="container">
+                <h2>About Us</h2>
+                <p>At Goldsboro Law, we’ve built a reputation on trust, integrity, and an unwavering commitment to our clients. We approach every case with diligence, clear communication, and a focus on achieving the best possible outcome.</p>
+            </div>
+        </section>
+
+        <section id="practice-areas" data-fade>
+            <div class="container">
+                <h2>Practice Areas</h2>
+                <div class="grid">
+                    <div class="practice-area">
+                        <h3>Family Law</h3>
+                        <p>From custody to adoption, guiding you through sensitive matters.</p>
+                    </div>
+                    <div class="practice-area">
+                        <h3>Criminal Defense</h3>
+                        <p>Protecting your rights at every stage of the process.</p>
+                    </div>
+                    <div class="practice-area">
+                        <h3>Real Estate</h3>
+                        <p>Secure your investments with expert guidance and careful planning.</p>
+                    </div>
+                    <div class="practice-area">
+                        <h3>Business & Corporate</h3>
+                        <p>Strategic counsel for contracts, formations, and ongoing operations.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="team" data-fade>
+            <div class="container">
+                <h2>Our Team</h2>
+                <div class="team-member">
+                    <h3>Jane Smith, Managing Partner</h3>
+                    <p>Over a decade of experience in civil litigation.</p>
+                </div>
+                <div class="team-member">
+                    <h3>John Doe, Senior Associate</h3>
+                    <p>Focused on criminal defense and constitutional law.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" data-fade>
+            <div class="container">
+                <h2>Contact</h2>
+                <form id="contact-form">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" placeholder="Your Name" required />
+
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="Your Email" required />
+                    <small class="field-note">We typically respond within 24 hours.</small>
+
+                    <label for="message">Message</label>
+                    <textarea id="message" rows="4" placeholder="Your Message" required></textarea>
+
+                    <button class="submit-btn" type="submit">Send</button>
+                    <!-- Form feedback area with role and aria-live -->
+                    <p id="form-feedback" style="color:#c3a05f; margin-top:10px;" role="status" aria-live="polite" tabindex="-1"></p>
+                </form>
+                <p style="margin-top:20px;">Phone: (XXX) XXX-XXXX | Email: contact@goldsborolaw.com</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2024 Goldsboro Law. All rights reserved.</p>
+    </footer>
+
+    <!-- Back-to-top button -->
+    <button class="back-to-top" id="back-to-top">Top</button>
+
+<script>
+    // Fade-in effect on scroll
+    const faders = document.querySelectorAll('[data-fade]');
+    const options = { threshold: 0.1 };
+    const fadeObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if(entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, options);
+    faders.forEach(el => fadeObserver.observe(el));
+
+    // Mobile Menu Toggle
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('nav-links');
+
+    hamburger.addEventListener('click', () => {
+        navLinks.classList.toggle('show');
+        hamburger.classList.toggle('active');
+        const expanded = navLinks.classList.contains('show');
+        hamburger.setAttribute('aria-expanded', expanded);
+
+        // Move focus into menu if expanded for accessibility
+        if (expanded) {
+            const firstNavLink = navLinks.querySelector('a');
+            if (firstNavLink) firstNavLink.focus();
+        }
+    });
+
+    // Highlight active section in nav
+    const sections = document.querySelectorAll('main section[id]');
+    const navAnchors = document.querySelectorAll('.nav-links li a');
+    const sectionObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if(entry.isIntersecting) {
+                const activeId = entry.target.getAttribute('id');
+                navAnchors.forEach(link => {
+                    link.classList.toggle('active', link.dataset.link === activeId);
+                });
+            }
+        });
+    }, {threshold: 0.6});
+    sections.forEach(section => sectionObserver.observe(section));
+
+    // Back-to-top button visibility
+    const backToTopBtn = document.getElementById('back-to-top');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 600) {
+            backToTopBtn.classList.add('show');
+        } else {
+            backToTopBtn.classList.remove('show');
+        }
+    });
+
+    // Back-to-top scroll behavior
+    backToTopBtn.addEventListener('click', () => {
+        window.scrollTo({top:0, behavior:'smooth'});
+    });
+
+    // Contact Form Feedback
+    const contactForm = document.getElementById('contact-form');
+    const formFeedback = document.getElementById('form-feedback');
+
+    contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('name');
+        const email = document.getElementById('email');
+        const message = document.getElementById('message');
+
+        if(!name.value.trim() || !email.value.trim() || !message.value.trim()) {
+            formFeedback.textContent = "Please fill in all required fields.";
+            formFeedback.style.color = "#f00";
+            // Move focus to feedback
+            formFeedback.focus();
+            return;
+        }
+
+        // Basic email format check
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if(!emailPattern.test(email.value)) {
+            formFeedback.textContent = "Please enter a valid email.";
+            formFeedback.style.color = "#f00";
+            formFeedback.focus();
+            return;
+        }
+
+        // If passes validation
+        formFeedback.textContent = "Thanks! Your message has been sent.";
+        formFeedback.style.color = "#c3a05f";
+        contactForm.reset();
+        // Focus the feedback message so screen readers announce it
+        formFeedback.focus();
+    });
+
+    // Allow hamburger to be toggled by keyboard
+    hamburger.addEventListener('keydown', (e) => {
+        if(e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            hamburger.click();
+        }
+    });
+</script>
+</body>
+</html>
